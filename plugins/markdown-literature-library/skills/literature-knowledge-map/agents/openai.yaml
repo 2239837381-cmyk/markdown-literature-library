@@ -1,0 +1,4 @@
+interface:
+  display_name: "文献知识图谱"
+  short_description: "生成文献卡、研究关系、证据等级与引文文件"
+  default_prompt: "请从已核验 Markdown 生成文献卡、研究脉络和 BibTeX/RIS。"

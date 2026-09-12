@@ -1,0 +1,20 @@
+{
+  "name": "markdown-literature-library",
+  "interface": {
+    "displayName": "Markdown Literature Library"
+  },
+  "plugins": [
+    {
+      "name": "markdown-literature-library",
+      "source": {
+        "source": "local",
+        "path": "./plugins/markdown-literature-library"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education & Research"
+    }
+  ]
+}

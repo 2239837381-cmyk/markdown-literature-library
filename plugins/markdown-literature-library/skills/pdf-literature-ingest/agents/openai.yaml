@@ -1,0 +1,4 @@
+interface:
+  display_name: "PDF 文献入库"
+  short_description: "PDF 转 Markdown、质量报告与 OCR 复核分流"
+  default_prompt: "请将指定目录中的 PDF 转为 Markdown，并隔离需要人工复核的结果。"

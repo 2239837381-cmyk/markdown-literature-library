@@ -1,0 +1,4 @@
+interface:
+  display_name: "离线文献阅读库"
+  short_description: "生成可增量更新、可高亮批注和导出的复古文献书架"
+  default_prompt: "请把已核验 Markdown 生成离线文献书架，并保留增量更新与批注导出。"

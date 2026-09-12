@@ -1,0 +1,24 @@
+{
+  "name": "markdown-literature-library",
+  "version": "0.2.0",
+  "description": "Convert PDF literature, create evidence-labelled knowledge maps, and build an offline annotated Markdown bookshelf.",
+  "author": {
+    "name": "Markdown Literature Library Contributors"
+  },
+  "license": "MIT",
+  "keywords": ["markdown", "literature-review", "research-map", "offline", "annotations"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Markdown 文献脉络库",
+    "shortDescription": "完成 PDF 入库、知识图谱与离线批注文献书架。",
+    "longDescription": "完整的本地文献工作流：PDF 转 Markdown 与质量门槛、结构化文献卡和证据分级关系、BibTeX/RIS，以及支持增量重建、右键四色高亮和批注导出的离线复古书架。",
+    "developerName": "Markdown Literature Library Contributors",
+    "category": "Education & Research",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "defaultPrompt": ["请把这批 PDF 转成经过质量核验的 Markdown。", "请从这些 Markdown 生成文献卡、证据分级关系和引文文件。", "请生成可增量更新、可导出批注的离线文献书架。"],
+    "brandColor": "#6d5840",
+    "composerIcon": "./assets/library-mark.svg",
+    "logo": "./assets/library-mark.svg",
+    "screenshots": []
+  }
+}

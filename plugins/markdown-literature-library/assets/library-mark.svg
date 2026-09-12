@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Literature library mark">
+  <rect width="64" height="64" rx="12" fill="#6d5840"/>
+  <path d="M15 13h24a8 8 0 0 1 8 8v31H23a8 8 0 0 0-8 8V13Z" fill="#e8d8b7"/>
+  <path d="M22 23h18M22 32h18M22 41h13" stroke="#6d5840" stroke-width="3" stroke-linecap="round"/>
+</svg>
