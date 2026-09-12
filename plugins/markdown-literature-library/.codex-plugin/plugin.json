@@ -6,6 +6,8 @@
     "name": "Markdown Literature Library Contributors"
   },
   "license": "MIT",
+  "repository": "https://github.com/2239837381-cmyk/markdown-literature-library",
+  "homepage": "https://github.com/2239837381-cmyk/markdown-literature-library#readme",
   "keywords": ["markdown", "literature-review", "research-map", "offline", "annotations"],
   "skills": "./skills/",
   "interface": {
