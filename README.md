@@ -26,7 +26,7 @@
 
 ## 快速开始
 
-需要 Python 3.9 或更新版本，无第三方依赖。
+阅读库、知识图谱与文献卡脚本需要 Python 3.9 或更新版本，无第三方依赖。
 
 ```bash
 python plugins/markdown-literature-library/scripts/build_library.py ./my-markdown ./literature-library.html
@@ -45,6 +45,8 @@ python plugins/markdown-literature-library/scripts/build_library.py ./converted-
 ```
 
 转换器不会删除 PDF，并会在输出目录生成 `conversion-report.json`。报告标记为 `needs_review` 的文件通常是扫描件、空白页或提取文本过少的 PDF；应抽样核对，并在用户授权后才用本地 OCR 补救。详见 [质量门槛](plugins/markdown-literature-library/skills/pdf-literature-ingest/references/quality-gates.md)。
+
+若首选 MarkItDown 转换器无法启动或执行失败，`convert_pdfs.py` 默认尝试本地 `pypdf` 降级提取。该结果始终标记为 `needs_review`，必须人工抽样核验后才可继续分析；脚本不会自动安装依赖或上传文件。需要该降级路径时，在本地安装 `pypdf`；不希望启用时加 `--fallback none`。
 
 `analyze_literature.py` 会生成 `literature-index.json`、`literature-cards.md`、`references.bib` 和 `references.ris`。将索引传给阅读库后，结构化文献卡会随原文一起展示。
 

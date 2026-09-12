@@ -12,7 +12,7 @@ description: "统筹 PDF/Markdown 文献从入库、知识图谱到离线批注�
 - 只有 PDF 转换、OCR 分流或质量报告：使用 `pdf-literature-ingest`。
 - 需要文献卡片、主题关系、证据等级或 BibTeX/RIS：使用 `literature-knowledge-map`。
 - 需要离线书架、全文阅读、增量重建、彩色高亮或批注导出：使用 `literature-reading-library`。
-- 端到端请求按上述顺序执行三个技能。任何 PDF 标记为 `failed` 或 `needs_review` 时，先报告并隔离；不要静默送入图谱分析。
+- 端到端请求按上述顺序执行三个技能。任何 PDF 标记为 `failed` 或 `needs_review` 时，先报告并隔离；尤其是 `method: pypdf-fallback` 的文件，须经人工抽样核验后再进入图谱分析。
 
 ## 完整交付
 

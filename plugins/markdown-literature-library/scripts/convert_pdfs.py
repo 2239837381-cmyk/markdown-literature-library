@@ -45,13 +45,37 @@ def converter_command(command: str) -> list[str]:
     parts = shlex.split(command, posix=not sys.platform.startswith("win"))
     if not parts:
         raise ValueError("转换器命令不能为空")
-    return parts
+    return [part.strip('"') for part in parts]
 
 
 def convert_one(pdf: Path, destination: Path, command: list[str]) -> dict[str, Any]:
     destination.parent.mkdir(parents=True, exist_ok=True)
-    result = subprocess.run([*command, str(pdf), "-o", str(destination)], capture_output=True, text=True, check=False)
+    try:
+        result = subprocess.run([*command, str(pdf), "-o", str(destination)], capture_output=True, text=True, check=False)
+    except OSError as error:
+        return {"returncode": 1, "stderr": f"无法启动首选转换器：{error}"}
     return {"returncode": result.returncode, "stderr": result.stderr[-800:].strip()}
+
+
+def pypdf_fallback(pdf: Path, destination: Path) -> dict[str, str]:
+    """Extract selectable text locally when the preferred converter cannot run.
+
+    This is intentionally a recovery path, not an equivalent layout-preserving
+    conversion. Callers must keep the result in ``needs_review`` status.
+    """
+    try:
+        from pypdf import PdfReader
+    except ImportError:
+        return {"status": "failed", "reason": "首选转换器失败，且本地未安装可选依赖 pypdf；无法执行降级提取"}
+    try:
+        text = "\n\n".join(page.extract_text() or "" for page in PdfReader(pdf).pages).strip()
+    except Exception as error:  # pypdf exposes several document-specific exception types
+        return {"status": "failed", "reason": f"pypdf 无法读取 PDF：{error}"}
+    if not text:
+        return {"status": "failed", "reason": "pypdf 未提取到可见文本；文件可能是扫描件、加密文档或损坏文档"}
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(f"# {pdf.stem}\n\n> 提取方式：本地 pypdf 降级提取；请对照 PDF 复核版面与段落顺序。\n\n{text}\n", encoding="utf-8")
+    return {"status": "needs_review", "reason": "首选转换器失败，已用本地 pypdf 降级提取；须经人工抽样核验后才能进入下游"}
 
 
 def main() -> int:
@@ -61,6 +85,7 @@ def main() -> int:
     parser.add_argument("--converter", default="markitdown", help="Local conversion command; default: markitdown")
     parser.add_argument("--no-recursive", action="store_true", help="Read only the immediate source directory")
     parser.add_argument("--overwrite", action="store_true", help="Replace existing Markdown outputs")
+    parser.add_argument("--fallback", choices=("pypdf", "none"), default="pypdf", help="Fallback when the preferred converter fails; default: pypdf")
     parser.add_argument("--min-characters", type=int, default=80, help="Text count below which a result needs review")
     parser.add_argument("--report", type=Path, help="JSON report path; default: <output>/conversion-report.json")
     args = parser.parse_args()
@@ -85,11 +110,21 @@ def main() -> int:
         else:
             result = convert_one(pdf, target, command)
             if result["returncode"]:
-                item.update({"status": "failed", "reason": result["stderr"] or f"转换器退出码 {result['returncode']}"})
+                primary_reason = result["stderr"] or f"转换器退出码 {result['returncode']}"
+                if args.fallback == "pypdf":
+                    fallback = pypdf_fallback(pdf, target)
+                    item.update({"method": "pypdf-fallback", **fallback})
+                    if fallback["status"] == "needs_review":
+                        item["characters"] = len(re.sub(r"\s+", "", target.read_text(encoding="utf-8", errors="replace")))
+                        item["reason"] = f"{fallback['reason']} 首选转换器原因：{primary_reason}"
+                    else:
+                        item["reason"] = f"首选转换器原因：{primary_reason}；{fallback['reason']}"
+                else:
+                    item.update({"status": "failed", "reason": primary_reason})
             else:
                 reason = review_reason(target, args.min_characters)
                 count = len(re.sub(r"\s+", "", target.read_text(encoding="utf-8", errors="replace"))) if target.exists() else 0
-                item.update({"status": "needs_review" if reason else "converted", "characters": count})
+                item.update({"status": "needs_review" if reason else "converted", "characters": count, "method": "preferred-converter"})
                 if reason:
                     item["reason"] = reason
         report.append(item)

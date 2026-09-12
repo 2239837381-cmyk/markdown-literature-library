@@ -1,6 +1,6 @@
 {
   "name": "markdown-literature-library",
-  "version": "0.2.0",
+  "version": "0.2.1+codex.20260912111030",
   "description": "Convert PDF literature, create evidence-labelled knowledge maps, and build an offline annotated Markdown bookshelf.",
   "author": {
     "name": "Markdown Literature Library Contributors"
@@ -8,16 +8,30 @@
   "license": "MIT",
   "repository": "https://github.com/2239837381-cmyk/markdown-literature-library",
   "homepage": "https://github.com/2239837381-cmyk/markdown-literature-library#readme",
-  "keywords": ["markdown", "literature-review", "research-map", "offline", "annotations"],
+  "keywords": [
+    "markdown",
+    "literature-review",
+    "research-map",
+    "offline",
+    "annotations"
+  ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Markdown 文献脉络库",
-    "shortDescription": "完成 PDF 入库、知识图谱与离线批注文献书架。",
-    "longDescription": "完整的本地文献工作流：PDF 转 Markdown 与质量门槛、结构化文献卡和证据分级关系、BibTeX/RIS，以及支持增量重建、右键四色高亮和批注导出的离线复古书架。",
+    "displayName": "Markdown \u6587\u732e\u8109\u7edc\u5e93",
+    "shortDescription": "\u5b8c\u6210 PDF \u5165\u5e93\u3001\u77e5\u8bc6\u56fe\u8c31\u4e0e\u79bb\u7ebf\u6279\u6ce8\u6587\u732e\u4e66\u67b6\u3002",
+    "longDescription": "\u5b8c\u6574\u7684\u672c\u5730\u6587\u732e\u5de5\u4f5c\u6d41\uff1aPDF \u8f6c Markdown \u4e0e\u8d28\u91cf\u95e8\u69db\u3001\u7ed3\u6784\u5316\u6587\u732e\u5361\u548c\u8bc1\u636e\u5206\u7ea7\u5173\u7cfb\u3001BibTeX/RIS\uff0c\u4ee5\u53ca\u652f\u6301\u589e\u91cf\u91cd\u5efa\u3001\u53f3\u952e\u56db\u8272\u9ad8\u4eae\u548c\u6279\u6ce8\u5bfc\u51fa\u7684\u79bb\u7ebf\u590d\u53e4\u4e66\u67b6\u3002",
     "developerName": "Markdown Literature Library Contributors",
     "category": "Education & Research",
-    "capabilities": ["Interactive", "Read", "Write"],
-    "defaultPrompt": ["请把这批 PDF 转成经过质量核验的 Markdown。", "请从这些 Markdown 生成文献卡、证据分级关系和引文文件。", "请生成可增量更新、可导出批注的离线文献书架。"],
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "\u8bf7\u628a\u8fd9\u6279 PDF \u8f6c\u6210\u7ecf\u8fc7\u8d28\u91cf\u6838\u9a8c\u7684 Markdown\u3002",
+      "\u8bf7\u4ece\u8fd9\u4e9b Markdown \u751f\u6210\u6587\u732e\u5361\u3001\u8bc1\u636e\u5206\u7ea7\u5173\u7cfb\u548c\u5f15\u6587\u6587\u4ef6\u3002",
+      "\u8bf7\u751f\u6210\u53ef\u589e\u91cf\u66f4\u65b0\u3001\u53ef\u5bfc\u51fa\u6279\u6ce8\u7684\u79bb\u7ebf\u6587\u732e\u4e66\u67b6\u3002"
+    ],
     "brandColor": "#6d5840",
     "composerIcon": "./assets/library-mark.svg",
     "logo": "./assets/library-mark.svg",
