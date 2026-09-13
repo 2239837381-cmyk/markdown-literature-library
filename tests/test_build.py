@@ -28,6 +28,10 @@ class BuildLibraryTests(unittest.TestCase):
         self.assertIn("localStorage", page)
         self.assertIn("contextmenu", page)
         self.assertIn("exportCurrent", page)
+        self.assertIn('id="pager"', page)
+        self.assertIn("const PAGE_SIZE=10", page)
+        self.assertIn("function tableHtml", page)
+        self.assertIn("table-wrap", page)
         self.assertNotIn("https://fonts", page)
 
     def test_incremental_manifest_reports_unchanged(self):

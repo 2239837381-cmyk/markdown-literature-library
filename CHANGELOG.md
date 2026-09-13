@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Clarify that reading-library topic maps must be grounded in each Markdown document's research object and mechanism, rather than title keywords alone.
+- Require parallel theme maps when the corpus contains parallel research lines, readable paginated bookshelves, and visible book titles.
+- Add Markdown table rendering requirements and table-focused verification to prevent row-level table fragmentation and column misalignment.
+
 ## 0.2.1 — 2026-09-12
 
 - 当本地 MarkItDown 转换器无法启动或执行失败时，`convert_pdfs.py` 可自动使用本地 `pypdf` 降级提取。

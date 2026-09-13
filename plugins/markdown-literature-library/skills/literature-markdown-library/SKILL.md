@@ -14,6 +14,8 @@ description: "统筹 PDF/Markdown 文献从入库、知识图谱到离线批注�
 - 需要离线书架、全文阅读、增量重建、彩色高亮或批注导出：使用 `literature-reading-library`。
 - 端到端请求按上述顺序执行三个技能。任何 PDF 标记为 `failed` 或 `needs_review` 时，先报告并隔离；尤其是 `method: pypdf-fallback` 的文件，须经人工抽样核验后再进入图谱分析。
 
+对于阅读库的主题分类、图谱、书架分页和 Markdown 表格渲染，遵循 `literature-reading-library` 中的“分类、图谱与书架可读性”及“Markdown 表格”要求；不得将标题关键词分类替代对 Markdown 内容的判断。
+
 ## 完整交付
 
 完整流程至少产生：PDF 转换报告（如有 PDF）、已核验 Markdown、文献卡片、关系与证据等级、BibTeX/RIS、离线 HTML、增量清单，以及可导出的本地批注。
